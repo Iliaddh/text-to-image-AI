@@ -6,9 +6,9 @@ import Post from '../mongodb/post.js';
 const app = express();
 
 
-app.use(cors({
-  origin:'http://localhost:5173',
-})) // Use this after the variable declaration
+// app.use(cors({
+//   origin:'http://localhost:5173',
+// })) // Use this after the variable declaration
 dotenv.config();
 
 const router = express.Router();

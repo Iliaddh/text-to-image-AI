@@ -1,4 +1,9 @@
 import mongoose from "mongoose";
+import cors from 'cors';
+import express from "express";
+
+const app = express();
+app.use(cors());
 
 const Post = new mongoose.Schema({
     name: {type: String, required:true},
@@ -9,4 +14,4 @@ const Post = new mongoose.Schema({
 const PostSchema = mongoose.model('Post', Post)
 
 
-export default Post;
+export default PostSchema;

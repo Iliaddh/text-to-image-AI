@@ -4,6 +4,8 @@ import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
 import { logo } from "./assets";
 import { Home, CreatePost } from "./pages";
 import Footer from "./components/Footer";
+import SignUp from "./components/SignUp";
+import Login from "./components/Login"
 function App() {
   return (
     <BrowserRouter>
@@ -55,7 +57,9 @@ function App() {
         </div>
 
         <div className="navbar-end">
-          <a className="btn btn-success  text-white w-16">Login</a>
+          <Link to="/login">
+            <button className="btn btn-success  text-white w-16">Login</button>
+          </Link>
         </div>
       </div>
       {/* ///////////////////////////////////////// */}
@@ -64,6 +68,8 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/create-post" element={<CreatePost />} />
+          <Route path="/signup" element={<SignUp />} />
+          <Route path="/login" element={<Login />} />
         </Routes>
       </main>
       <Footer />

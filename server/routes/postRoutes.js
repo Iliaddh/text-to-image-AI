@@ -1,8 +1,11 @@
 import express from "express";
 import * as dotenv from "dotenv";
 import { v2 as cloudinary } from "cloudinary";
+import connectDB from "../mongodb/connect.js";
 import cors from "cors";
 import Post from "../mongodb/post.js";
+import User from "../mongodb/User.js";
+import hashPassword from "./auth/auth.js";
 const app = express();
 
 app.use(
@@ -25,12 +28,10 @@ router.route("/").get(async (req, res) => {
     const posts = await Post.find({});
     res.status(200).json({ success: true, data: posts });
   } catch (err) {
-    res
-      .status(500)
-      .json({
-        success: false,
-        message: "Fetching posts failed, please try again",
-      });
+    res.status(500).json({
+      success: false,
+      message: "Fetching posts failed, please try again",
+    });
   }
 });
 
@@ -47,13 +48,15 @@ router.route("/").post(async (req, res) => {
 
     res.status(200).json({ success: true, data: newPost });
   } catch (err) {
-    res
-      .status(500)
-      .json({
-        success: false,
-        message: "Unable to create a post, please try again",
-      });
+    res.status(500).json({
+      success: false,
+      message: "Unable to create a post, please try again",
+    });
   }
 });
+
+
+
+
 
 export default router;

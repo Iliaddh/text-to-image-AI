@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Loader, Card, FormField } from "../components";
 import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
+import SignUp from "../components/SignUp";
 
 const RenderCards = ({ data, title }) => {
   if (data?.length > 0) {
@@ -76,7 +77,7 @@ function Home() {
               images with just a few clicks.
             </p>
             <Link to="/create-post" className="mx-4">
-              <button class="btn btn-success  text-white drop-shadow-xl w-24">
+              <button className="btn btn-success  text-white drop-shadow-xl w-24">
                 Create
               </button>
             </Link>

@@ -5,7 +5,7 @@ module.exports = {
   theme: {
     extend: {
       dropShadow: {
-        "xl":"0 10px 10px rgb(56,180,123)",
+        "xl":"0 5px 5px rgb(56,180,123)",
         "3xl": "0 35px 35px rgba(0, 0, 0, 0.25)",
         "4xl": [
           "0 35px 35px rgba(0, 0, 0, 0.25)",

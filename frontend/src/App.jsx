@@ -7,20 +7,10 @@ import Footer from "./components/Footer";
 function App() {
   return (
     <BrowserRouter>
-      {/* <header className="w-full flex justify-between items-center bg-white sm:px-8 px-4 py-4 border-b border-b-[#e6ebf4]">
-        <Link to="/">
-          <img src={logo} alt="logo" className="w-16 object-contain" />
-        </Link>
+      {/* Hero */}
 
-        <Link
-          to="/create-post"
-          className="font-inter font-medium bg-[#38b47b] text-white px-4 py-2 rounded-md"
-        >
-          Create
-        </Link>
-      </header> */}
       {/* /////////////////////////////////// */}
-      <div className="navbar bg-base-100">
+      <div className="navbar bg-base-100 ">
         <div className="navbar-start">
           <div className="dropdown">
             <ul
@@ -51,10 +41,12 @@ function App() {
             <img src={logo} alt="logo" className="w-16 object-contain" />
           </Link>
         </div>
-        <div className="navbar-center hidden lg:flex">
+        <div className="navbar-center lg:flex">
           <ul className="menu menu-horizontal px-1">
             <li>
-              <a>Home</a>
+              <Link to="/">
+                <p>Home</p>
+              </Link>
             </li>
             <li>
               <a>About us</a>
@@ -63,17 +55,11 @@ function App() {
         </div>
 
         <div className="navbar-end">
-          <Link
-            to="/create-post"
-            className="mx-4"
-          >
-            <button class="btn btn-success  text-white drop-shadow-xl w-18">Create</button>
-          </Link>
-
           <a className="btn btn-success  text-white w-16">Login</a>
         </div>
       </div>
       {/* ///////////////////////////////////////// */}
+
       <main className="sm:p-8 px-4 py-8 w-full bg-[#f9fafe] min-h-[calc(100vh-73px)]">
         <Routes>
           <Route path="/" element={<Home />} />

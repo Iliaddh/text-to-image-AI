@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Loader, Card, FormField } from "../components";
-
+import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
 
 const RenderCards = ({ data, title }) => {
   if (data?.length > 0) {
@@ -66,7 +66,24 @@ function Home() {
   };
   return (
     <>
-      <section>
+      <div className="hero min-h-96 bg-base-200">
+        <div className="hero-content text-center">
+          <div className="max-w-md">
+            <h1 className="text-5xl font-bold ">Hello there</h1>
+            <p className="py-6">
+              Transform your ideas into captivating visuals instantly. Our
+              AI-powered image generator lets you create professional-quality
+              images with just a few clicks.
+            </p>
+            <Link to="/create-post" className="mx-4">
+              <button class="btn btn-success  text-white drop-shadow-xl w-24">
+                Create
+              </button>
+            </Link>
+          </div>
+        </div>
+      </div>
+      <section className="mt-10">
         <div>
           <h1 className="font-extrabold text-[#222328] text-[32px]">
             The Community Showcase
@@ -115,7 +132,6 @@ function Home() {
           )}
         </div>
       </section>
-      
     </>
   );
 }

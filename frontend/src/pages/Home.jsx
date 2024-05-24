@@ -19,6 +19,7 @@ function Home() {
   const [searchText, setSearchText] = useState("");
   const [searchTimeout, setSearchTimeout] = useState(null);
   const [searchedResults, setSearchedResults] = useState(null);
+  
 
   useEffect(() => {
     const fetchPosts = async () => {

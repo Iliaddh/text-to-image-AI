@@ -1,5 +1,6 @@
 import React from "react";
 import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
+import { useState } from "react";
 
 import { logo } from "./assets";
 import { Home, CreatePost } from "./pages";
@@ -7,6 +8,16 @@ import Footer from "./components/Footer";
 import SignUp from "./components/SignUp";
 import Login from "./components/Login"
 function App() {
+  
+  const [signUp, setSignUp] = useState(false);
+  const [logIn, setLogIn] = useState(false);
+
+  const logOutHandler = () => {
+    setLogIn(false);
+    setSignUp(false);
+  }
+
+  
   return (
     <BrowserRouter>
       {/* Hero */}
@@ -57,19 +68,19 @@ function App() {
         </div>
 
         <div className="navbar-end">
-          <Link to="/login">
-            <button className="btn btn-success  text-white w-16">Login</button>
-          </Link>
+          {logIn || signUp ? <button className="btn btn-success  text-white " onClick={logOutHandler} >Log out</button>: <Link to="/login">
+            <button className="btn btn-success  text-white w-16" >Login</button>
+          </Link>}
         </div>
       </div>
       {/* ///////////////////////////////////////// */}
 
       <main className="sm:p-8 px-4 py-8 w-full bg-[#f9fafe] min-h-[calc(100vh-73px)]">
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<Home/>} />
           <Route path="/create-post" element={<CreatePost />} />
-          <Route path="/signup" element={<SignUp />} />
-          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<SignUp setSignUp = {setSignUp} />} />
+          <Route path="/login" element={<Login  setLogIn = {setLogIn} />} />
         </Routes>
       </main>
       <Footer />

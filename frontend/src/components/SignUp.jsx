@@ -1,21 +1,27 @@
-import React, { useState } from 'react'
-import { Link } from 'react-router-dom';
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
-function SignUp(event) {
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-    
-    const signUpHandler = async (event) => {
-      event.preventDefault();
-        const res = await fetch("http://localhost:8080/signup", {
-          method: "POST",
-          body : JSON.stringify({email, password}),
-          headers :{"Content-Type": "application/json"}
-        });
-        const data = await res.json();
-        console.log(data)
-        
-    }
+function SignUp({setSignUp}) {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const navigate = useNavigate();
+
+  
+
+  const signUpHandler = async (event) => {
+    event.preventDefault();
+    const res = await fetch("http://localhost:8080/signup", {
+      method: "POST",
+      body: JSON.stringify({ email, password }),
+      headers: { "Content-Type": "application/json" },
+    });
+    const data = await res.json();
+    alert("Sign up successful");
+    setSignUp(true);
+    navigate("/");
+    console.log(data);
+  };
   return (
     <div className="card shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
       <form className="card-body">
@@ -29,7 +35,7 @@ function SignUp(event) {
             className="input input-bordered"
             required
             value={email}
-            onChange={(e) => setEmail(e.target.value) }
+            onChange={(e) => setEmail(e.target.value)}
           />
         </div>
         <div className="form-control">
@@ -42,21 +48,22 @@ function SignUp(event) {
             className="input input-bordered"
             required
             value={password}
-            onChange={(e) => setPassword(e.target.value) }
+            onChange={(e) => setPassword(e.target.value)}
           />
           <label className="label">
             <Link to="/login" className="label-text-alt link link-hover">
-            Have an account?
+              Have an account?
             </Link>
           </label>
         </div>
         <div className="form-control mt-6">
-          <button className="btn btn-primary" onClick={signUpHandler}>SignUp</button>
+          <button className="btn btn-primary" onClick={signUpHandler}>
+            SignUp
+          </button>
         </div>
       </form>
     </div>
-    
-  )
+  );
 }
 
-export default SignUp
+export default SignUp;

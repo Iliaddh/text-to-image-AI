@@ -1,20 +1,26 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 
-function Login() {
+function Login({setLogIn}) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
 
+  
   const signInHandler = async (event) => {
     event.preventDefault();
     const res = await fetch("http://localhost:8080/signin", {
-        method: "POST",
-        body: JSON.stringify({ email, password }),
-        headers: { "Content-Type": "application/json" }
+      method: "POST",
+      body: JSON.stringify({ email, password }),
+      headers: { "Content-Type": "application/json" },
     });
     const data = await res.json();
+    alert("Logged in");
+    setLogIn(true);
+    navigate("/");
     console.log(data);
-}
+  };
 
   return (
     <div className="card shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
@@ -29,7 +35,7 @@ function Login() {
             className="input input-bordered"
             required
             value={email}
-            onChange={(e) => setEmail(e.target.value) }
+            onChange={(e) => setEmail(e.target.value)}
           />
         </div>
         <div className="form-control">
@@ -42,7 +48,7 @@ function Login() {
             className="input input-bordered"
             required
             value={password}
-            onChange={(e) => setPassword(e.target.value) }
+            onChange={(e) => setPassword(e.target.value)}
           />
           <label className="label">
             <a href="#" className="label-text-alt link link-hover">
@@ -56,7 +62,9 @@ function Login() {
           </label>
         </div>
         <div className="form-control mt-6">
-          <button className="btn btn-primary" onClick={signInHandler}>Login</button>
+          <button className="btn btn-primary" onClick={signInHandler}>
+            Login
+          </button>
         </div>
       </form>
     </div>

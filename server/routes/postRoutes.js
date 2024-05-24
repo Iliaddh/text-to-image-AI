@@ -1,14 +1,15 @@
-import express from 'express';
-import * as dotenv from 'dotenv';
-import { v2 as cloudinary } from 'cloudinary';
-import cors from 'cors'
-import Post from '../mongodb/post.js';
+import express from "express";
+import * as dotenv from "dotenv";
+import { v2 as cloudinary } from "cloudinary";
+import cors from "cors";
+import Post from "../mongodb/post.js";
 const app = express();
 
-
-app.use(cors({
-  origin:'http://localhost:5173',
-})) // Use this after the variable declaration
+app.use(
+  cors({
+    origin: "http://localhost:5173",
+  })
+); // Use this after the variable declaration
 dotenv.config();
 
 const router = express.Router();
@@ -19,16 +20,21 @@ cloudinary.config({
   api_secret: process.env.CLOUDINARY_API_SECRET,
 });
 
-router.route('/').get(async (req, res) => {
+router.route("/").get(async (req, res) => {
   try {
     const posts = await Post.find({});
     res.status(200).json({ success: true, data: posts });
   } catch (err) {
-    res.status(500).json({ success: false, message: 'Fetching posts failed, please try again' });
+    res
+      .status(500)
+      .json({
+        success: false,
+        message: "Fetching posts failed, please try again",
+      });
   }
 });
 
-router.route('/').post(async (req, res) => {
+router.route("/").post(async (req, res) => {
   try {
     const { name, prompt, photo } = req.body;
     const photoUrl = await cloudinary.uploader.upload(photo);
@@ -41,7 +47,12 @@ router.route('/').post(async (req, res) => {
 
     res.status(200).json({ success: true, data: newPost });
   } catch (err) {
-    res.status(500).json({ success: false, message: 'Unable to create a post, please try again' });
+    res
+      .status(500)
+      .json({
+        success: false,
+        message: "Unable to create a post, please try again",
+      });
   }
 });
 

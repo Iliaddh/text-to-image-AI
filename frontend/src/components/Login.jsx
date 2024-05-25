@@ -14,11 +14,17 @@ function Login({setLogIn}) {
       method: "POST",
       body: JSON.stringify({ email, password }),
       headers: { "Content-Type": "application/json" },
+      credentials: "include", 
+      
     });
     const data = await res.json();
-    alert("Logged in");
+    if(res.status == 200){
+      alert("Logged in");
     setLogIn(true);
     navigate("/");
+    }else{
+      alert(res.message)
+    }
     console.log(data);
   };
 

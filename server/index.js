@@ -20,10 +20,10 @@ dotenv.config();
 
 app.use(express.json({ limit: "50mb" }));
 
-app.use("/api/v1/post", postRoutes);
-app.use("/signup", signUpRouter);
-app.use("/signin", signInRouter);
-app.use("/api/v1/dalle", dalleRoutes);
+app.use("/.netlify/functions/api/v1/post", postRoutes);
+app.use("/.netlify/functions/signup", signUpRouter);
+app.use("/.netlify/functions/signin", signInRouter);
+app.use("/.netlify/functions/api/v1/dalle", dalleRoutes);
 
 app.get("/", async (req, res) => {
   res.status(200).json({
